@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script> 
+function lettersNumbersCheck(name)
+{
+   var regEx = /^[0-9a-zA-Z]+$/;
+   if(regEx.test(name.value))
+     {
+      return true;
+     }
+   else
+     {
+     alert("Please enter letters and numbers only.");
+     return false;
+     }
+}
+function lettersCheck(name)
+{
+   var regEx = /^[a-zA-Z]+$/;
+   if(regEx.test(name.value))
+     {
+      return true;
+     }
+   else
+     {
+     alert("Please enter letters and numbers only.");
+     return false;
+     }
+}     
+</script> 
+</head>
+<body>
+<div class="mail">
+<h2>JavaScript Letters Numbers Validation</h2>
+<form name="form1" action="#"> 
+Name: <input type='text' name='name' id="name" onkeyup="return lettersNumbersCheck(document.form1.name)"></br></br>
+<input type="submit" name="submit" value="Submit" onclick="lettersNumbersCheck(document.form1.name)"/>
+</form>
+</div>
+</body>
+</html>

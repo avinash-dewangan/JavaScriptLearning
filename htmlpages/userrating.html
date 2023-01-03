@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Example of Auto Loading Bootstrap Modal on Page Load</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Jost:wght@700;800;900&family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <style>
+        .contact-form .each-field input,
+        .contact-form .each-field textarea {
+            width: 100%;
+            background: #fff;
+            border: none;
+            font-size: 14px;
+            font-weight: 500;
+            color: #2e2e2e;
+            padding: 15px 10px;
+        }
+
+        .main-footer .right-wrap {
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-footer .right-wrap:after {
+            position: absolute;
+            content: '';
+            top: -200px;
+            right: -1000px;
+            width: 235%;
+            height: 200%;
+            background: #05326b;
+            z-index: -1;
+        }
+
+        .contact-form .each-field textarea {
+            height: 80px;
+        }
+
+        .contact-form .each-field input::placeholder,
+        .contact-form .each-field textarea::placeholder {
+            opacity: unset;
+        }
+
+        .contact-form .each-field input:focus,
+        .contact-form .each-field textarea:focus {
+            border: 1px solid #ff4471;
+            outline: none;
+        }
+
+        .contact-form .submit-field .cta {
+            width: 180px;
+            border: none;
+            font-size: 14px;
+            padding: 18px 0;
+            margin-top: 10px;
+            background: #b5133a;
+        }
+
+        .contact-form .icon-n-info {
+            margin: 35px 0 0;
+        }
+
+        .contact-form .icon-n-info .each-info {
+            display: flex;
+            align-items: end;
+        }
+
+        .contact-form .icon-n-info .each-info+.each-info {
+            margin-top: 35px;
+        }
+
+        .contact-form .icon-n-info .each-info img {
+            width: 44px !important;
+            height: 40px !important;
+            margin-right: 20px;
+        }
+
+        .contact-form .icon-n-info .each-info .right-info h5 {
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 22px;
+            margin: 0;
+        }
+
+
+
+        /* ================================ Star ratings css =============================*/
+        .each-field.for_ratings {
+            margin-bottom: 5px !important;
+        }
+
+        fieldset.star_rating,
+        .star_rating label {
+            margin: 0;
+            padding: 0;
+        }
+
+        .star_rating {
+            border: none;
+            display: inline-block;
+            text-align: left;
+        }
+
+        .star_rating>input {
+            display: none;
+        }
+
+        .star_rating>label:before {
+            margin: 5px;
+            font-size: 1.25em;
+            font-family: FontAwesome;
+            display: inline-block;
+            content: "\f005";
+        }
+
+        .star_rating>.half:before {
+            content: "\f089";
+            position: absolute;
+        }
+
+        .star_rating>label {
+            color: #ddd;
+            float: right;
+        }
+
+        .star_rating>input:checked~label,
+        /* show gold star when clicked */
+        .star_rating:not(:checked)>label:hover,
+        /* hover current star */
+        .star_rating:not(:checked)>label:hover~label {
+            color: #FFD700;
+        }
+
+        /* hover previous stars in list */
+
+        .star_rating>input:checked+label:hover,
+        /* hover current star when changing rating */
+        .star_rating>input:checked~label:hover,
+        .star_rating>label:hover~input:checked~label,
+        /* lighten current selection */
+        .star_rating>input:checked~label:hover~label {
+            color: #FFED85;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="myModal" class="contact-form modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Hi there! Mind answering one question?</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>How would you rate your experience with our company?</p>
+                    <form>
+
+                        <div class="row">
+                         
+                            <div class="col-md-12">
+                                <div class="each-field">
+                                    <textarea maxlength="200" name="publicFeedback" id="publicFeedback"
+                                        placeholder="Message"></textarea><label id="label_valid_publicFeedback"></label>
+                                    <label id="label_publicFeedback"></label>
+                                </div>
+                            </div>
+                         
+                            <div class="col-md-12">
+                                <div class="each-field for_ratings">
+                                    <fieldset class="star_rating">
+                                        <input type="radio" id="star5" onclick="changeStar(event)" name="rating"
+                                            value="5" /><label class="full" for="star5"
+                                            title="Awesome - 5 stars"></label>
+                                        <input type="radio" id="star4half" onclick="changeStar(event)" name="rating"
+                                            value="4.5" /><label class="half" for="star4half"
+                                            title="Pretty good - 4.5 stars"></label>
+                                        <input type="radio" id="star4" onclick="changeStar(event)" name="rating"
+                                            value="4" /><label class="full" for="star4"
+                                            title="Pretty good - 4 stars"></label>
+                                        <input type="radio" id="star3half" onclick="changeStar(event)" name="rating"
+                                            value="3.5" /><label class="half" for="star3half"
+                                            title="Meh - 3.5 stars"></label>
+                                        <input type="radio" id="star3" onclick="changeStar(event)" name="rating"
+                                            value="3" /><label class="full" for="star3" title="Meh - 3 stars"></label>
+                                        <input type="radio" id="star2half" onclick="changeStar(event)" name="rating"
+                                            value="2.5" /><label class="half" for="star2half"
+                                            title="Kinda bad - 2.5 stars"></label>
+                                        <input type="radio" id="star2" onclick="changeStar(event)" name="rating"
+                                            value="2" /><label class="full" for="star2"
+                                            title="Kinda bad - 2 stars"></label>
+                                        <input type="radio" id="star1half" onclick="changeStar(event)" name="rating"
+                                            value="1.5" /><label class="half" for="star1half"
+                                            title="Meh - 1.5 stars"></label>
+                                        <input type="radio" id="star1" onclick="changeStar(event)" name="rating"
+                                            value="1" /><label class="full" for="star1"
+                                            title="Sucks big time - 1 star"></label>
+                                        <input type="radio" id="starhalf" onclick="changeStar(event)" name="rating"
+                                            value="0.5" /><label class="half" for="starhalf"
+                                            title="Sucks big time - 0.5 stars"></label>
+                                    </fieldset>
+                                    <label id="label_valid_star"></label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="submit-field">
+                                    <button type="button" class="btn btn-success"
+                                        onclick="validateBasicInfo();">Submit</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $("#myModal").modal('show');
+        });
+        function changeStar(e) {
+            let star = e.target.value;
+            localStorage.setItem("star", star)
+
+        }
+
+        async function validateBasicInfo() {
+
+            var flag = true;
+
+            var publicFeedback = $('#publicFeedback').val();
+            let selectedService = document.getElementById("serviceId").value
+            let applicationRefNo = document.getElementById("applicationRefNo").value
+            let userId = document.getElementById("userId").value
+            let userName = document.getElementById("userName").value
+            
+            if (localStorage.getItem("star") == undefined || localStorage.getItem("star") == "0") {
+                $('#label_valid_star').html("</br><font style='color: red' class='righttd'>Feedback Required</font>");
+                flag = false;
+            } else {
+                $('#label_valid_star').html("");
+            }
+            if (!flag) {
+                return flag;
+            } else {
+                let formData = new FormData()
+                formData.append("userId", userId)
+                formData.append("userName", userName)
+                formData.append("applicationRefNo", applicationRefNo)
+                formData.append("publicFeedback", publicFeedback)
+                formData.append("star", localStorage.getItem("star"))
+                formData.append("selectedService", selectedService)
+                formData.append("opinionTypeId", "1")
+                let url = localStorage.getItem("USER_MANAGEMENT");
+                let fullUrl = "http://localhost:9002/" + "saveContactDetail";
+               
+                try {
+                    const rawResponse = await fetch(fullUrl, {
+                        method: "POST",
+                        headers: {
+                            Accept: "application/json",
+                            "Content-Type": "application/json",
+                        },
+                        body: formData
+                    });
+                    const result = await rawResponse.json();
+                    if (result.opinionId != 0) {
+                        $('#publicFeedback').val("");
+                        $('.star_rating > input').prop('checked', '')
+                        localStorage.setItem("star", "0")
+                        // document.querySelector('.loading').style.display='none';
+                        alert("Your Query Successfully Submitted");
+                        $("#myModal").modal('hide');
+                    } else {
+                        localStorage.setItem("star", "0")
+                        //  document.querySelector('.loading').style.display='none';
+                        alert("Not Submited Please Try Again.")
+                        
+                    }
+                } catch (e) {
+                    console.log(e)
+                    $('#publicFeedback').val("");
+                    $('.star_rating > input').prop('checked', '')
+                    localStorage.setItem("star", "0")
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

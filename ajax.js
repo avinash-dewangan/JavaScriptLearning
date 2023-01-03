@@ -1,5 +1,5 @@
 // Example POST method implementation:
-async function sendRequest(
+async function postRequest(
   url = "",
   data = {},
   dataSentType = "p"
@@ -31,11 +31,21 @@ async function sendRequest(
   return response.json(); // parses JSON response into native JavaScript objects
 }
 
-sendRequest(
+postRequest(
   "http://localhost:9003/speServiceLocnTypeMapperServicefindByProperty",
   { propertyName: "pcdiServiceId", propertyValue: 6 }
 )
   .then((data) => {
-    console.log(data); // JSON data parsed by `data.json()` call
+    var datasort = data.sort(function(a,b){return a - b})
+    for(var key in data){
+      var anOption = document.createElement("OPTION");
+     
+      console.log(data[key].pcdvLocTypeLocalLang);
+      console.log(data[key].pcdiLocTypeId);
+        console.log(data[key].pcdvLocType);
+          console.log(data[key].pcdiLocTypeId);
+      
+  }
+    console.log(datasort); // JSON data parsed by `data.json()` call
   })
   .catch((error) => console.log(error));
