@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Date Range Picker</title>
+</head>
+<body>
+    <h1>Select a Date Range</h1>
+    <label for="startDate">Start Date:</label>
+    <input type="date" id="startDate" required>
+    <br>
+    <label for="endDate">End Date:</label>
+    <input type="date" id="endDate" required>
+    <br>
+    <span id="dateError" style="color: red;"></span>
+    <br>
+    <button id="submitBtn">Submit</button>
+
+    <script>
+        const startDateInput = document.getElementById('startDate');
+        const endDateInput = document.getElementById('endDate');
+        const dateError = document.getElementById('dateError');
+        const submitBtn = document.getElementById('submitBtn');
+
+        submitBtn.addEventListener('click', function () {
+            const startDate = new Date(startDateInput.value);
+            const endDate = new Date(endDateInput.value);
+
+            if (startDate > endDate) {
+                dateError.textContent = 'End date must be after the start date.';
+            } else {
+                dateError.textContent = '';
+                alert('Start Date: ' + startDate.toDateString() + '\nEnd Date: ' + endDate.toDateString());
+            }
+        });
+    </script>
+</body>
+</html>
+
+

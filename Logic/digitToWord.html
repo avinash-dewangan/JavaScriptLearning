@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <input type="number" id="number">
+    <dir id="words"></dir>
+    <script>
+        function numberToWords(number) {
+    const singleDigits = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"];
+    const teens = ["", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"];
+    const tens = ["", "Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"];
+
+    function convertUnder100(n) {
+        if (n < 10) {
+            return singleDigits[n];
+        } else if (n >= 11 && n <= 19) {
+            return teens[n - 11];
+        } else {
+            const ten = Math.floor(n / 10);
+            const unit = n % 10;
+            return tens[ten] + (unit ? " " + singleDigits[unit] : "");
+        }
+    }
+
+    if (number === 0) {
+        return singleDigits[0];
+    }
+
+    let result = "";
+
+    if (number >= 100) {
+        const hundred = Math.floor(number / 100);
+        result += singleDigits[hundred] + " Hundred ";
+        number %= 100;
+    }
+
+    if (number >= 10) {
+        result += convertUnder100(number);
+    } else if (number > 0) {
+        result += singleDigits[number];
+    }
+
+    return result;
+}
+
+// Test the function with various numbers
+console.log(numberToWords(0)); // Output: "Zero"
+console.log(numberToWords(5)); // Output: "Five"
+console.log(numberToWords(42)); // Output: "Forty Two"
+console.log(numberToWords(123)); // Output: "One Hundred Twenty Three"
+console.log(numberToWords(789)); // Output: "Seven Hundred Eighty Nine"
+
+
+
+function inWords (num) {
+	var a = ['','one ','two ','three ','four ', 'five ','six ','seven ','eight ','nine ','ten ','eleven ','twelve ','thirteen ','fourteen ','fifteen ','sixteen ','seventeen ','eighteen ','nineteen '];
+	var b = ['', '', 'twenty','thirty','forty','fifty', 'sixty','seventy','eighty','ninety'];
+
+	//if ((num = num.toString()).length > 9) return 'overflow';
+	if ((num = num.toString()).length > 9) return '';
+	n = ('000000000' + num).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
+	if (!n) return; var str = '';
+	str += (n[1] != 0) ? (a[Number(n[1])] || b[n[1][0]] + ' ' + a[n[1][1]]) + 'crore ' : '';
+	str += (n[2] != 0) ? (a[Number(n[2])] || b[n[2][0]] + ' ' + a[n[2][1]]) + 'lakh ' : '';
+	str += (n[3] != 0) ? (a[Number(n[3])] || b[n[3][0]] + ' ' + a[n[3][1]]) + 'thousand ' : '';
+	str += (n[4] != 0) ? (a[Number(n[4])] || b[n[4][0]] + ' ' + a[n[4][1]]) + 'hundred ' : '';
+	str += (n[5] != 0) ? ((str != '') ? 'and ' : '') + (a[Number(n[5])] || b[n[5][0]] + ' ' + a[n[5][1]]) + '' : '';
+	return str;
+}
+
+function dateToWords(date) {
+    if (!(date instanceof Date)) {
+        return "Invalid Date";
+    }
+
+    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+    const day = days[date.getUTCDay()];
+    const month = months[date.getUTCMonth()];
+    const dayNumber = date.getUTCDate();
+    const year = date.getUTCFullYear();
+
+    return `${day} the ${inWords(dayNumber)} of ${month}, ${inWords(year)}`;
+}
+
+
+
+
+
+function formatDateToYYYYMMDD(inputDate) {
+	const dateParts = inputDate.split("/"); // Split the date string into parts
+	if (dateParts.length !== 3) {
+		return "Invalid Date";
+	}
+
+	const day = dateParts[0];
+	const month = dateParts[1];
+	const year = dateParts[2];
+
+	// Create a new date string in "yyyy-mm-dd" format
+	const formattedDate = `${year}-${month}-${day}`;
+	return formattedDate;
+}
+
+
+
+
+    </script>
+</body>
+</html>

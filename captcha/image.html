@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image CAPTCHA Example</title>
+</head>
+<body>
+    <h1>Image CAPTCHA Example</h1>
+    <canvas id="captchaCanvas" width="300" height="150"></canvas>
+    <br>
+    <label for="captchaInput">Enter the text from the image:</label>
+    <input type="text" id="captchaInput" name="captchaInput" required>
+    <button type="button" onclick="validateCaptcha()">Submit</button>
+
+    <script src="image.js"></script>
+</body>
+</html>

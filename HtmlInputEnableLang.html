@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text" name="Name" id="222">
+  <input type="text" name="eng_Name" id="333">
+  <script>
+    function langInput(e, lang) {
+  inputText = e.target.value;
+  var regex = /^[A-Za-z0-9\/\\.-]*$/g;
+  if (lang === "hi") {
+    regex = /^[\W0-9]*$/g;
+  }
+
+  // Match the pattern
+  var matches = inputText.match(regex);
+
+  // Print matches
+  if (matches) {
+    for (var i = 0; i < matches.length; i++) {
+      console.log("Match: " + matches[i]);
+    }
+    return true;
+  }else{
+    e.target.value = "";
+  }
+  return false;
+}
+// document.getElementsByTagName("input").addEventListener("keyup", (e) => {
+//   let lang = "hi";
+//   console.log((e.target.name).split(_)[0])
+//   let d = langInput(e, lang);
+ 
+//   console.log(d);
+// });
+
+let array=['keyup','onfocusout']
+for(arr of array){
+  document.querySelectorAll("input").forEach((d)=>{d.addEventListener(arr,(e)=>{
+  let lang = "hi";
+  if((e.target.name).split("_")[0]==='eng'){
+    lang='eng'
+  }
+  //console.log((e.target.name).split(_)[0])
+  let d = langInput(e, lang);
+ 
+  console.log(d);
+})})
+}
+
+
+
+  </script>
+</body>
+</html>

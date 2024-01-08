@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Upload and AJAX Request</title>
+</head>
+<body>
+    <input type="file" id="fileInput">
+    <button id="uploadButton">Upload</button>
+    <div id="result"></div>
+
+    <script>
+        // Function to convert a file to base64 format
+        function fileToBase64(file, callback) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                callback(e.target.result);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Function to send an AJAX request
+        function sendAjaxRequest(base64Data) {
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', 'YOUR_SERVER_ENDPOINT', true); // Replace with your server endpoint
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            
+            const data = JSON.stringify({ base64Data });
+            
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    document.getElementById('result').textContent = 'File uploaded successfully!';
+                } else if (xhr.readyState === 4) {
+                    document.getElementById('result').textContent = 'File upload failed.';
+                }
+            };
+            
+            xhr.send(data);
+        }
+
+        // Event listener for the file input change
+        document.getElementById('fileInput').addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                fileToBase64(file, function (base64Data) {
+                    console.log(base64Data); // You can display or work with the base64 data if needed
+                });
+            }
+        });
+
+        // Event listener for the upload button
+        document.getElementById('uploadButton').addEventListener('click', function () {
+            const fileInput = document.getElementById('fileInput');
+            if (fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                if (file) {
+                    fileToBase64(file, function (base64Data) {
+                        sendAjaxRequest(base64Data);
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>

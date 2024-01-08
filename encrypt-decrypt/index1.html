@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AES Encryption/Decryption Example</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js" integrity="sha512-a+SUDuwNzXDvz4XrIcXHuCf089/iJAoN4lmrXJg18XnduKK6YlDHNRalv4yd1N40OKI80tFidF+rqTFKGPoWFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+
+<script>
+    // Encryption function in JavaScript using CryptoJS
+    function encryptData(data, key) {
+        const encrypted = CryptoJS.AES.encrypt(data, key);
+        return encrypted.toString();
+    }
+
+    // Decryption function in JavaScript using CryptoJS
+    function decryptData(encryptedData, key) {
+        const decrypted = CryptoJS.AES.decrypt(encryptedData, key);
+        return decrypted.toString(CryptoJS.enc.Utf8);
+    }
+
+    // Replace this key with your actual AES key
+    const aesKey = '2b7e151628aed2a6abf7158809cf4f3c';
+
+    // Data to be encrypted
+    const originalData = {name:"ravi",age:34};
+
+    // Encrypt the data
+    const encryptedData = encryptData(JSON.stringify(originalData), aesKey);
+    console.log('Encrypted Data:', encryptedData);
+
+    // Decrypt the data
+    const decryptedData = decryptData(encryptedData, aesKey);
+    console.log('Decrypted Data:', decryptedData);
+</script>
+
+</body>
+</html>

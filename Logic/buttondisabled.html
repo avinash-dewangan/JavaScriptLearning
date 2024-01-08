@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Submit Button Disabled Until All File Inputs Filled</title>
+</head>
+<body>
+    <select id="paymentmode" name="paymentmode">                                  
+         <option value="eWallet" selected="selected" id="payModeWallet">eWallet</option>
+        <option value="CSCWallet" id="payModeWallet">CSCWallet</option>
+    </select>
+    <input type="text" id="CSCID">
+    <input type="button" id="print">
+
+
+    <script>
+        // Function to check if all file inputs are filled
+        function checkInputs() {
+            let check = document.getElementById("paymentmode").value
+            let CSCID = document.getElementById("CSCID").value
+            const submitButton = document.getElementById('print');
+
+            if (check==='CSCWallet' && CSCID==='') {
+                submitButton.disabled = true;
+            }else if (check==='CSCWallet' && CSCID!==''){
+                submitButton.disabled = false;
+            }else {
+                submitButton.disabled = false;
+            }
+        }
+
+        // Add event listeners to file inputs
+        document.getElementById('paymentmode').addEventListener('change', checkInputs);
+        document.getElementById('CSCID').addEventListener('change', checkInputs);
+    </script>
+</body>
+</html>

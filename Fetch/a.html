@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+async function getData() {
+  const res = await fetch('https://edistrict.cgstate.gov.in/EdistrictAPI/Api/Education?arn=0705012005002009&username=educhipsintegration&password=edu@chips22')
+  // The return value is *not* serialized
+  // You can return Date, Map, Set, etc.
+ 
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error('Failed to fetch data')
+  }
+  console.log(res)
+ 
+  return res.json()
+}
+async function a(){
+    let res = await getData();
+
+    console.log(res)
+}
+a();
+    </script>
+</body>
+</html>

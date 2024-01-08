@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Date Range Picker</title>
+    <style>
+      /* Add some basic CSS for date picker styling */
+      .datepicker {
+        display: inline-block;
+        width: 120px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <label for="startDate">Start Date:</label>
+    <input type="date" id="startDate" class="datepicker" readonly />
+    <label for="endDate">End Date:</label>
+    <input type="date" id="endDate" class="datepicker" readonly />
+
+    <script>
+      function dateFormatChange(dateValue) {
+        let parts = dateValue.split("/");
+        let dd = parts[0];
+        let mm = parts[1];
+        let yy = parts[2];
+        let datefromat = mm + "/" + dd + "/" + yy;
+        return datefromat
+      }
+      
+      function validateDateRange(startDate1, toDate1) {
+        const startDateInput = document.getElementById(startDate1);
+        const endDateInput = document.getElementById(toDate1);
+
+        const startDate = new Date(dateFormatChange(startDateInput.value));
+        const endDate = new Date(dateFormatChange(endDateInput.value));
+        let msg=null;
+        if (startDate > endDate) {
+            let lang= $("#hiddenSession").val();
+			
+			if(lang=="hi")
+				msg="समाप्ति तिथि आरंभ तिथि के बाद की होनी चाहिए.";
+			else
+			    msg = "End date must be after the start date.";
+
+            document.getElementById("141_div_Y").style.display = "block";
+            document.getElementById("141_div_Y").innerHTML = msg;
+            return true
+        }else{
+            return false
+        }
+      }
+      validateDateRange("12/10/2023","02/10/2023")
+      validateDateRange("12/10/2023","12/10/2023")
+      validateDateRange("02/10/2023","12/10/2023")
+    </script>
+  </body>
+</html>

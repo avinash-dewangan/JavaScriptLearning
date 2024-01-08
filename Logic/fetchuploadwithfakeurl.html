@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Upload and Fetch API (Fake URL)</title>
+</head>
+<body>
+    <input type="file" id="fileInput">
+    <button id="uploadButton">Upload</button>
+    <div id="result"></div>
+
+    <script>
+        // Function to convert a file to base64 format
+        function fileToBase64(file, callback) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                callback(e.target.result);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Event listener for the upload button
+        document.getElementById('uploadButton').addEventListener('click', function () {
+            const fileInput = document.getElementById('fileInput');
+            if (fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                if (file) {
+                    fileToBase64(file, function (base64Data) {
+                        sendAjaxRequest(base64Data);
+                    });
+                }
+            }
+        });
+
+        // Function to send an AJAX request using Fetch API
+        function sendAjaxRequest(base64Data) {
+
+            fetch('insert your url', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ base64Data }),
+            })
+            .then(response => {
+                if (response.status === 200) {
+                    document.getElementById('result').textContent = 'File uploaded successfully!';
+                } else {
+                    document.getElementById('result').textContent = 'File upload failed.';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>
