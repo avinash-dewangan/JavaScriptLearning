@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create JSON Data for Form Elements</title>
+</head>
+<body>
+
+<h2>Create JSON Data for Form Elements</h2>
+
+<div id="formDataContainer"></div>
+
+<script>
+// Function to create JSON data for form elements
+function createFormData() {
+  var formData = {
+    elements: [
+      {
+        type: "input",
+        attributes: {
+          type: "text",
+          name: "inputField",
+          placeholder: "Input Field",
+          value: ""
+        }
+      },
+      {
+        type: "textarea",
+        attributes: {
+          name: "textareaField",
+          placeholder: "Textarea Field",
+          rows: 4,
+          cols: 50
+        }
+      },
+      {
+        type: "select",
+        attributes: {
+          name: "selectField",
+          options: [
+            { text: "Option 1", value: "option1" },
+            { text: "Option 2", value: "option2" },
+            { text: "Option 3", value: "option3" }
+          ]
+        }
+      },
+      {
+        type: "datalist",
+        attributes: {
+          id: "datalistField",
+          options: [
+            { text: "Option 1", value: "option1" },
+            { text: "Option 2", value: "option2" },
+            { text: "Option 3", value: "option3" }
+          ]
+        }
+      },
+      {
+        type: "checkbox",
+        attributes: {
+          name: "checkboxField",
+          value: "checkboxValue",
+          label: "Checkbox Label"
+        }
+      },
+      {
+        type: "radio",
+        attributes: {
+          name: "radioGroup",
+          value: "radioValue1",
+          label: "Radio Button 1"
+        }
+      },
+      {
+        type: "radio",
+        attributes: {
+          name: "radioGroup",
+          value: "radioValue2",
+          label: "Radio Button 2"
+        }
+      }
+    ]
+  };
+  
+  return formData;
+}
+
+// Create JSON data for form elements
+var formData = createFormData();
+let html = formData.elements.map(
+    (x)=>{console.log(x)
+        if(x.type==='input'){
+            return `<input/>`
+        }else if(x.type==='textarea'){
+            return '<textarea></<textarea>'
+        }
+
+
+    }
+
+
+        
+    )
+    console.log(html)
+// Display JSON data
+var formDataContainer = document.getElementById("formDataContainer");
+formDataContainer.textContent = JSON.stringify(formData, null, 2);
+</script>
+
+</body>
+</html>

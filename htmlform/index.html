@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add New Control</title>
+</head>
+<body>
+
+<h2>Add New Control</h2>
+
+<form id="addControlForm">
+  <label for="controlName">Control Name:</label><br>
+  <select id="controlName" name="controlName" required>
+    <option value="">Select Control Name</option>
+    <option value="input">Input</option>
+    <option value="textarea">Textarea</option>
+    <option value="select">Select</option>
+    <option value="button">Button</option>
+    <option value="checkbox">Checkbox</option>
+    <option value="radio">Radio</option>
+    <option value="date">Date</option>
+    <!-- Add more options as needed -->
+  </select><br><br>
+  
+  <label for="type">input Type</label><br>
+  <input type="text" id="type" name="type" required><br><br>
+  
+  
+  <label for="label">Label:</label><br>
+  <input type="text" id="label" name="label" required><br><br>
+  
+  <input type="submit" value="Submit">
+</form>
+
+<div id="dd"></div>
+
+<script>
+document.getElementById("addControlForm").addEventListener("submit", function(event) {
+  event.preventDefault(); // Prevent form submission
+  
+  // Get form data
+  var formData = new FormData(this);
+  
+  // Convert form data to JSON
+  var jsonData = {};
+  formData.forEach(function(value, key){
+    jsonData[key] = value;
+  });
+
+  let jj = [jsonData]
+  
+  let html =jj.map((x)=>{
+    if(x.type==='textarea'){
+        return `<label for="${x.label}">${x.label}</label><textarea id="${x.label}" name="${x.label}" rows="4" cols="50">`
+    }else{
+        return `<label for="${x.label}">${x.label}</label><input id="${x.label}" type="${x.type}"/>`
+
+    }
+  })
+
+  document.getElementById("dd").innerHTML=html
+  
+  // Send JSON data to server (you can handle this part with AJAX or fetch API)
+  console.log(jsonData);
+});
+</script>
+
+</body>
+</html>

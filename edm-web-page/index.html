@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Selected JPG Image</title>
+</head>
+<body>
+
+<input type="file" accept="image/jpeg" onchange="displaySelectedImage(event)">
+<div id="imageContainer"></div>
+
+<script>
+function displaySelectedImage(event) {
+    // Get the selected file
+    const selectedFile = event.target.files[0];
+
+    if (selectedFile && selectedFile.type === 'image/jpeg') {
+        // Create a FileReader to read the selected file
+        const reader = new FileReader();
+
+        // Define the onload event handler for the FileReader
+        reader.onload = function (e) {
+            // Get the data URL representing the image
+            const imageDataUrl = e.target.result;
+
+            // Display the image on the HTML page
+            const imageContainer = document.getElementById('imageContainer');
+            imageContainer.innerHTML = `<img src="${imageDataUrl}" alt="Selected Image">`;
+        };
+
+        // Read the selected file as a data URL
+        reader.readAsDataURL(selectedFile);
+    } else {
+        alert('Please select a valid JPG image file.');
+    }
+}
+</script>
+
+</body>
+</html>

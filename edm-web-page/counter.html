@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Hit Counter Example</title>
+</head>
+<body>
+    <h1>Welcome to My Website</h1>
+    <p>This website has been visited <span id="pageHitCount">0</span> times.</p>
+    <p>Your user-specific page hit count is <span id="userPageHitCount">0</span>.</p>
+
+    <script>
+        // Get or initialize user-specific hit count
+        let username = "exampleUser"; // Replace with actual user authentication logic
+        let userPageHitCount = parseInt(localStorage.getItem(username + "_pageHitCount")) || 0;
+
+        // Increment and display page hit count
+        let pageHitCount = parseInt(localStorage.getItem("pageHitCount")) || 0;
+        pageHitCount++;
+        localStorage.setItem("pageHitCount", pageHitCount.toString());
+        document.getElementById('pageHitCount').innerText = pageHitCount;
+
+        // Increment and display user-specific page hit count
+        userPageHitCount++;
+        localStorage.setItem(username + "_pageHitCount", userPageHitCount.toString());
+        document.getElementById('userPageHitCount').innerText = userPageHitCount;
+    </script>
+</body>
+</html>

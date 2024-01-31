@@ -1,0 +1,98 @@
+let engObj = {
+  hello: "Hello, Welcome to eDistrict automated help system.",
+  here: "Here are the available menu options:",
+  AppointmentBooking: "  Appointment Booking",
+  SeekInformation: "Seek Information",
+  TrackStatus: "Track Status",
+  HelpDesk: "Help Desk",
+  VisitHomePage: "Visit Home Page",
+  AboutLokSevaKendra: "About Lok Seva Kendra",
+  DosAboutServiceRequest: "Do's About Service Request",
+  GrievanceRedressal: "Grievance Redressal",
+  SchemeDiscovery: "Scheme Discovery",
+  // service discovery
+  please: "Please respond to the questions below",
+  Gender: "Gender",
+
+  Select: "Select",
+  Male: "Male",
+  Female: "Female",
+  Transgender: "Transgender",
+  Age: "Age",
+
+  Young: "I am young (12 - 25 year)",
+  "Middle Aged": "I, am middle aged ( 18 - 60 year)",
+  "Senior Citizen": 'I", am a Senior Citizen (:" 60", year)',
+  MaritalStatus: "Marital Status",
+
+  Married: "Married",
+  Widow: "Widow",
+  Unmarried: "Unmarried",
+  AcademicDetails: "Academic Details",
+
+  "10-Pass": "10th",
+  "12-Pass": "12th",
+  Graduate: "Graduate",
+  "Post-Graduate": "Post Graduate",
+  "YourProfession": "Your Profession",
+
+  Business: "Business",
+  Fisherman: "Fisherman",
+  Weaver: "Weaver",
+  Handcraft: "Craftsman",
+  other: "Other",
+  "Do You Have BPL card": "Do You Have, BPL card",
+  "BPL-Yes": "Yes",
+  "BPL-No": "No",
+  "Discover": "Discover",
+};
+
+let hiObj = {
+    hello: "नमस्कार, ई-डिस्ट्रिक्ट स्वचालित सहायता प्रणाली में आपका स्वागत है।",
+    here: "यहां उपलब्ध मेनू विकल्प दिए गए हैं:",
+    AppointmentBooking: "अपॉइंटमेंट बुकिंग",
+    SeekInformation: "जानकारी मांगें",
+    TrackStatus: "ट्रैक स्थिति",
+    HelpDesk: "सहायता केंद्र",
+    VisitHomePage: "होम पेज पर जाएँ",
+    AboutLokSevaKendra: "लोक सेवा केंद्र के बारे में",
+    DosAboutServiceRequest: "सेवा अनुरोध के बारे में क्या करें?",
+    GrievanceRedressal: "शिकायत निवारण",
+    SchemeDiscovery: "योजना खोज",
+    // service discovery
+    please: "कृपया नीचे दिए गए प्रश्नों का उत्तर दें",
+    Gender: "लिंग",
+  
+    Select: "चुनना",
+    Male: "पुरूष",
+    Female: "महिला",
+    Transgender: "ट्रांसजेंडर",
+    Age: "आयु",
+  
+    Young: "मैं युवा हूं (12-25 वर्ष)",
+    "Middle Aged": "मैं, मध्यम आयु वर्ग का हूं (18-60 वर्ष)",
+    "Senior Citizen": "मैं', एक वरिष्ठ नागरिक हूं (:'60' वर्ष)",
+    MaritalStatus: " वैवाहिक स्थिति",
+  
+    Married: "विवाहित",
+    Widow: "विधवा",
+    Unmarried: "अविवाहित",
+    AcademicDetails: "शैक्षणिक विवरण",
+  
+    "10-Pass": "10वीं",
+    "12-Pass": "12वीं",
+    Graduate: "स्नातक",
+    "Post-Graduate": "स्नातकोत्तर",
+    "YourProfession": "आपका पेशा",
+  
+    Business: "व्यवसाय",
+    Fisherman: "मछुआरा",
+    Weaver: "बुनकर",
+    Handcraft: "हस्तशिल्प",
+    other: "अन्य",
+    "Do You Have BPL card": "क्या आपके पास बीपीएल कार्ड है",
+    "BPL-Yes": "हाँ",
+    "BPL-No": "नहीं",
+    "Discover": "खोजें",
+  };
+  

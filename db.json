@@ -1,0 +1,135 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "title": "a titlfffe",
+      "views": 102
+    },
+    {
+      "id": "2",
+      "title": "another title",
+      "views": 200
+    },
+    {
+      "id": "3",
+      "title": "a titlfffe",
+      "views": 102
+    },
+    {
+      "id": "5",
+      "title": "a titlfffe",
+      "views": 102
+    },
+    {
+      "id": "6",
+      "title": "a titlfffe",
+      "views": 102
+    },
+    {
+      "id": "7",
+      "title": "a titlfffe",
+      "views": 102
+    },
+    {
+      "id": "8",
+      "title": "a titlfffe",
+      "views": 102
+    },
+    {
+      "id": "9",
+      "title": "a titlfffe",
+      "views": 102
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "text": "a comment about post 1",
+      "postId": "1"
+    },
+    {
+      "id": "2",
+      "text": "another comment about post 1",
+      "postId": "1"
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "controls": [
+    {
+      "name": "input",
+      "attributes": [
+        "accept",
+        "autocomplete",
+        "autofocus",
+        "checked",
+        "disabled",
+        "maxlength",
+        "minlength",
+        "name",
+        "pattern",
+        "placeholder",
+        "readonly",
+        "required",
+        "type",
+        "value"
+      ]
+    },
+    {
+      "name": "textarea",
+      "attributes": [
+        "autocomplete",
+        "cols",
+        "disabled",
+        "maxlength",
+        "minlength",
+        "name",
+        "placeholder",
+        "readonly",
+        "required",
+        "rows"
+      ]
+    },
+    {
+      "name": "select",
+      "attributes": [
+        "autocomplete",
+        "disabled",
+        "multiple",
+        "name",
+        "required",
+        "size"
+      ]
+    },
+    {
+      "name": "button",
+      "attributes": [
+        "autofocus",
+        "disabled",
+        "form",
+        "formaction",
+        "formenctype",
+        "formmethod",
+        "formnovalidate",
+        "formtarget",
+        "name",
+        "type",
+        "value"
+      ]
+    },
+    {
+      "name": "form",
+      "attributes": [
+        "accept-charset",
+        "action",
+        "autocomplete",
+        "enctype",
+        "method",
+        "name",
+        "novalidate",
+        "target"
+      ]
+    }
+  ]
+}
