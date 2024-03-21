@@ -29,3 +29,16 @@ function sum1(a){
 let store1 = sum1(3)
 console.log(store1.one())
 console.log(store1.second(5))
+
+
+
+
+             otp = cscFeedbackFormRequestDto.getOtp();
+			 arn = cscFeedbackFormRequestDto.getApplicationRefNo();
+			 mobile = cscFeedbackFormRequestDto.getMobileNo();
+			 msg = cscFeedbackFormRequestDto.getFeedbackMessage();
+			Integer rating = cscFeedbackFormRequestDto.getRating();
+			Integer districtId = cscFeedbackFormRequestDto.getDistrictId();
+			Integer officeId = cscFeedbackFormRequestDto.getDistrictId();
+			Integer serviceId = cscFeedbackFormRequestDto.getDistrictId();
+			Integer userId = cscFeedbackFormRequestDto.getDistrictId();

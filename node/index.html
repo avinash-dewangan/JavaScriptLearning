@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management</title>
+    <link rel="stylesheet" href="styles.css">
+<style>
+    .container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.form-container {
+    margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+#profile-container {
+    display: none;
+}
+
+</style>
+</head>
+<body>
+    <div class="container">
+        <h1>User Management</h1>
+
+        <!-- Registration Form -->
+        <div class="form-container">
+            <h2>Register</h2>
+            <form id="register-form">
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit">Register</button>
+            </form>
+        </div>
+
+        <!-- Login Form -->
+        <div class="form-container">
+            <h2>Login</h2>
+            <form id="login-form">
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+
+        <!-- Profile Display -->
+        <div id="profile-container">
+            <h2>Profile</h2>
+            <p id="profile-username"></p>
+            <p id="profile-email"></p>
+        </div>
+    </div>
+
+    <!-- <script src="scripts.js"></script> -->
+    <script>
+        // Handle registration form submission
+document.getElementById('register-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent form submission
+
+// Get form data using FormData object
+const formData = new FormData(this);
+
+// Convert FormData object to JSON
+const jsonData = {};
+formData.forEach((value, key) => {
+    jsonData[key] = value;
+});
+
+// Log form data
+console.log(jsonData);
+
+// Example: Send form data to server using Fetch API
+fetch('http://localhost:3000/register', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(jsonData)
+})
+.then(response => response.json())
+.then(data => {
+    console.log('Success:', data);
+    // Handle success response
+})
+.catch(error => {
+    console.error('Error:', error);
+    // Handle error
+});
+});
+
+// Handle login form submission
+document.getElementById('login-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const formData = new FormData(this);
+    const userData = {};
+    formData.forEach((value, key) => {
+        userData[key] = value;
+    });
+
+    // Send user login data to the server (using fetch or XMLHttpRequest)
+    // Upon successful login, display the user profile
+    const profileContainer = document.getElementById('profile-container');
+    const profileUsername = document.getElementById('profile-username');
+    const profileEmail = document.getElementById('profile-email');
+
+    // Example profile display (replace with actual user data)
+    profileUsername.textContent = 'Username: johndoe';
+    profileEmail.textContent = 'Email: johndoe@example.com';
+    profileContainer.style.display = 'block';
+});
+
+    </script>
+</body>
+</html>

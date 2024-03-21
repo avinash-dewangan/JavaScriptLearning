@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JSON to Excel</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.0/xlsx.full.min.js"></script>
+</head>
+<body>
+
+<button onclick="convertToExcel()">Convert to Excel</button>
+
+<script>
+function convertToExcel() {
+  // Sample JSON data
+  const jsonData = [
+    { Name: "John Doe", Age: 30, City: "New York" },
+    { Name: "Jane Smith", Age: 25, City: "Los Angeles" },
+    { Name: "Bob Johnson", Age: 40, City: "Chicago" }
+  ];
+
+  // Convert JSON to worksheet
+  const worksheet = XLSX.utils.json_to_sheet(jsonData);
+
+  // Create workbook and add the worksheet
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+
+  // Save the workbook as a file
+  XLSX.writeFile(workbook, "data.xlsx");
+}
+</script>
+
+</body>
+</html>

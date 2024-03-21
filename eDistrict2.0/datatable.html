@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dynamic DataTable from API</title>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+</head>
+<body>
+
+<table id="my-table" class="display" style="width:100%">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Position</th>
+      <th>Office</th>
+      <th>Age</th>
+      <th>Start date</th>
+      <th>Salary</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<script>
+$(document).ready(async function() {
+
+
+    let lang = "hi"
+                let env={
+                    prod:1
+                }
+                let url = "http://localhost:9003/"
+                if(env.prod==1){
+                    url = "https://uat-api-ed.cgstate.gov.in/api/application-management/"
+                }
+            
+                let fullUrl = url + `eistrict2/getAllUserRating?pageNo=0&pageSize=10&lang=${lang}`;
+
+
+                const rawResponse = await fetch(fullUrl, {
+                    method: "POST",
+                    headers: {
+                        Accept: "application/json",
+                        "Content-Type": "application/json",
+                    },
+                    //body: JSON.stringify(),
+                });
+                const result = await rawResponse.json();
+
+  // Make API call to retrieve data
+  $('#my-table').DataTable({
+        data: result.data,
+        columns: [
+          { data: 'address' },
+          { data: 'averageRating' },
+          { data: 'addressE' },
+          { data: 'userNameE' },
+          { data: 'serviceName' },
+          { data: 'userName' }
+        ]
+       
+      });
+ 
+});
+</script>
+
+</body>
+</html>

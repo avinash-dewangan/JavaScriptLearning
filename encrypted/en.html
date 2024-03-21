@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHA-1 Encryption</title>
+    <script>
+        async function sha1Encrypt() {
+            var hash = await sha1(password);
+            console.log("SHA-1 Hash:", hash);
+
+            // Here you can use the hash value as needed
+        }
+
+       async function sha1(input) {
+            var buffer = new TextEncoder("utf-8").encode(input);
+            return crypto.subtle.digest("SHA-1", buffer).then(function(hash) {
+                return hex(hash);
+            });
+        }
+
+      async  function hex(buffer) {
+            var hexCodes = [];
+            var view = new DataView(buffer);
+            for (var i = 0; i < view.byteLength; i += 4) {
+                var value = view.getUint32(i);
+                var stringValue = value.toString(16);
+                var padding = '00000000';
+                var paddedValue = (padding + stringValue).slice(-padding.length);
+                hexCodes.push(paddedValue);
+            }
+            return hexCodes.join("");
+        }
+        sha1Encrypt();
+    </script>
+</head>
+<body>
+    <h2>SHA-1 Encryption</h2>
+    <label for="password">Password:</label>
+    <input type="text" id="password" name="password"><br><br>
+    <button type="button" onclick="sha1Encrypt()">Encrypt</button>
+</body>
+</html>

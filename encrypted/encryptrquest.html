@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encrypt Request API</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script>
+        function encryptCredentials(username, password) {
+            // Encrypt username and password using AES encryption
+            var encryptedUsername = CryptoJS.AES.encrypt(username, 'secretKey123').toString();
+            var encryptedPassword = CryptoJS.AES.encrypt(password, 'secretKey123').toString();
+
+            return { encryptedUsername, encryptedPassword };
+        }
+
+        function sendRequest() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            // Encrypt username and password
+            var encryptedCredentials = encryptCredentials(username, password);
+
+            // Make API request with encrypted credentials
+            console.log("Encrypted username:", encryptedCredentials.encryptedUsername);
+            console.log("Encrypted password:", encryptedCredentials.encryptedPassword);
+
+            // Here you would proceed to make the API request with the encrypted credentials
+            // For example:
+            // fetch('https://api.example.com/login', {
+            //     method: 'POST',
+            //     body: JSON.stringify({
+            //         username: encryptedCredentials.encryptedUsername,
+            //         password: encryptedCredentials.encryptedPassword
+            //     }),
+            //     headers: {
+            //         'Content-Type': 'application/json'
+            //     }
+            // })
+            // .then(response => response.json())
+            // .then(data => console.log(data))
+            // .catch(error => console.error('Error:', error));
+        }
+    </script>
+</head>
+<body>
+    <h2>Encrypt Request API</h2>
+    <form>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username"><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password"><br><br>
+        <button type="button" onclick="sendRequest()">Submit</button>
+    </form>
+</body>
+</html>
