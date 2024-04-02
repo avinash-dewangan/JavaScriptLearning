@@ -1,0 +1,107 @@
+:root{
+    --pre: #471c7f;
+}
+
+#box{
+    height: 200px;
+    width: 200px;
+    background-color: red;
+    background-image: repeating-conic-gradient(red 0deg 10deg, yellow 10deg 20deg, blue 20deg 30deg);
+    border-radius: 50%;
+    animation: anima 2s linear infinite;
+} */
+ /* #box{
+    width: 200px;
+    height: 200px;
+    background-image: conic-gradient(red, yellow, green, blue, grey, orange, red);
+    border-radius: 50%;
+    animation: anima 2s linear infinite;
+} */
+#box::before{
+    content: 'conic-gradient';
+}
+
+@keyframes anima {
+    100%{
+        rotate: 360deg;
+    }
+}
+body{
+  
+}
+
+#holder::before{
+    content: 'background-clip';
+}
+
+#holder{
+   
+    font-weight: 900;
+    background-image: url("https://as2.ftcdn.net/v2/jpg/04/89/80/43/1000_F_489804350_bamPHUeUFRHZpTs5AMjAhxwUst9VQzoA.jpg");
+    background-size: cover;
+    background-position: center;
+    font-size: 100px;
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+h1{
+   font-size: 110px; 
+   font-weight: 900;
+   -webkit-text-stroke: 4px #000;
+   color: transparent;
+}
+h1::before{
+    content: "text stroke";
+}
+
+#loader{
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    border: 10px solid #ddd;
+    border-top-color: #333;
+    animation: loaderanim 1s infinite;
+}
+@keyframes loaderanim {
+    100%{
+        rotate: 360deg;
+    }
+}
+
+
+h2{
+    font-weight: 900;
+    font-size: 80px;
+    position: relative;
+    background: linear-gradient(to right, red, blue);
+    background-clip: text;
+    color: transparent;
+    text-shadow: 50px 100px 60px rgba(212, 61, 61, 0.401);
+    animation: anime 0.1s infinite alternate;
+    font-family: Roboto-Black;
+}
+@keyframes anime {
+    100%{
+        text-shadow: 50px 100px 60px rgba(60, 54, 128, 0.457); 
+    }
+}
+h2::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 0%;
+    background-color: #333;
+    transition: all ease 1s;
+}
+h2:hover::after{
+    width: 100%;
+}
+
+@font-face {
+    font-family: Roboto-Black;
+    src: url(./../fonts/Roboto/Roboto-Black.ttf);
+  }

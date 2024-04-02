@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Throttling Example</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+input[type="text"] {
+    width: 300px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+#output {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: blue;
+}
+
+    </style>
+</head>
+<body>
+    <h1>Throttling Example</h1>
+    <input type="text" id="inputField" placeholder="Type something...">
+    <div id="output"></div>
+
+    <script>
+        function throttle(func, delay) {
+    let lastCallTime = 0;
+    
+    return function() {
+        const context = this;
+        const args = arguments;
+        const now = Date.now();
+        
+        if (now - lastCallTime >= delay) {
+            func.apply(context, args);
+            lastCallTime = now;
+        }
+    };
+}
+
+const inputField = document.getElementById('inputField');
+const outputDiv = document.getElementById('output');
+
+const updateOutput = throttle(function() {
+    outputDiv.textContent = inputField.value;
+}, 1000); // Throttle with an interval of 1 second
+
+// Attach the throttled function to the input field's input event
+inputField.addEventListener('input', updateOutput);
+
+    </script>
+</body>
+</html>

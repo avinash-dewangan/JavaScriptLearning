@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Internet Connection Check</title>
+  <style>
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .popup {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay" id="overlay">
+    <div class="popup">
+      <h2>No Internet Connection</h2>
+      <p>Please check your internet connection and try again.</p>
+      <button onclick="closePopup()">Close</button>
+    </div>
+  </div>
+
+  <script>
+    // Function to close the popup
+    function closePopup() {
+      var overlay = document.getElementById('overlay');
+      overlay.style.display = 'none';
+    }
+
+    // Function to check internet connection
+    function checkInternetConnection() {
+      var overlay = document.getElementById('overlay');
+      if (!navigator.onLine) {
+        // Show the popup if there is no internet connection
+        overlay.style.display = 'flex';
+      } else {
+        // Hide the popup if there is internet connection
+        overlay.style.display = 'none';
+      }
+    }
+
+    // Check internet connection on page load
+    window.addEventListener('load', checkInternetConnection);
+
+    // Add event listener for online/offline events
+    //window.addEventListener('online', checkInternetConnection);
+    //window.addEventListener('offline', checkInternetConnection);
+  </script>
+</body>
+</html>

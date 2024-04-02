@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add location Type</title>
+</head>
+<body>
+
+  <h2>Add location</h2>
+  <form id="locationTypeForm">
+    <label for="locationType">location Type:</label>
+    <input type="text" id="locationType" name="locationType" required><br>
+    <button type="submit">Add</button>
+  </form>
+
+  <h2>Location Type List</h2>
+  <ul id="locationTypeList"></ul>
+  <script>
+    const BASE_URL = 'http://localhost:3000';
+
+    // Function to handle country form submission
+    document.getElementById('locationTypeForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const formData = new FormData(event.target);
+      const locationData = {};
+      formData.forEach((value, key) => {
+        locationData[key] = value;
+      });
+      fetch(`${BASE_URL}/location`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name: newCountry })
+      })
+      .then(response => {
+        if (response.ok) {
+          alert('Country added successfully!');
+          event.target.reset();
+        } else {
+          alert('Failed to add country. Please try again.');
+        }
+      })
+      .catch(error => console.error('Error adding country:', error));
+    });
+
+
+
+// Function to fetch location types and populate the list
+fetch(`${BASE_URL}/locationTypes`)
+  .then(response => response.json())
+  .then(locationTypes => {
+    const locationTypeList = document.getElementById('locationTypeList');
+    locationTypes.forEach(locationType => {
+      const listItem = document.createElement('li');
+      listItem.textContent = locationType.name;
+      locationTypeList.appendChild(listItem);
+    });
+  })
+  .catch(error => console.error('Error fetching location types:', error));
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Custom Confirmation Message</title>
+<style>
+    /* Customizing dialog box styles */
+    .custom-dialog {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 20px;
+        border: 1px solid #ccc;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
+    .custom-dialog p {
+        margin: 0;
+    }
+    .custom-dialog button {
+        margin-top: 10px;
+    }
+</style>
+</head>
+<body>
+
+<button onclick="showConfirmation()">Show Confirmation</button>
+
+<!-- Custom dialog box -->
+<div id="customDialog" class="custom-dialog">
+    <p>Are you sure you want to proceed?</p>
+    <button onclick="confirmAction()">Yes</button>
+    <button onclick="hideConfirmation()">No</button>
+</div>
+
+<script>
+// Function to show the custom confirmation dialog
+function showConfirmation() {
+    document.getElementById('customDialog').style.display = 'block';
+}
+
+// Function to hide the custom confirmation dialog
+function hideConfirmation() {
+    document.getElementById('customDialog').style.display = 'none';
+}
+
+// Function to confirm action
+function confirmAction() {
+    // Your code to perform the action goes here
+    alert('Action confirmed!');
+    hideConfirmation();
+}
+</script>
+
+</body>
+</html>

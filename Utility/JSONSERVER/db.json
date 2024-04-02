@@ -1,0 +1,155 @@
+{
+  "products": [
+    {
+      "name": "sadfsad",
+      "price": "3",
+      "description": "asdf",
+      "id": 1
+    },
+    {
+      "name": "dsaf",
+      "price": "33",
+      "description": "sdasf",
+      "id": 2
+    },
+    {
+      "name": "srt",
+      "price": "444",
+      "description": "444",
+      "id": 3
+    },
+    {
+      "name": "fdgdsfgsg",
+      "price": "444444",
+      "description": "fdsgdsfgdsfgsdfg",
+      "id": 4
+    }
+  ],
+  "users": [
+    {
+      "name": "sdaf",
+      "email": "avinash.dew9@gmail.com",
+      "gender": "female",
+      "interests": [
+        "sports",
+        "music",
+        "movies"
+      ],
+      "role": "admin",
+      "id": 1
+    },
+    {
+      "name": "asdfa",
+      "email": "dsaf@dsfas",
+      "gender": "male",
+      "interests": [
+        "movies"
+      ],
+      "role": "admin",
+      "id": 2
+    },
+    {
+      "name": "",
+      "email": "",
+      "gender": "male",
+      "id": 3
+    },
+    {
+      "name": "",
+      "email": "",
+      "gender": "male",
+      "id": 4
+    },
+    {
+      "name": "",
+      "email": "",
+      "gender": "male",
+      "id": 5
+    },
+    {
+      "email": "avinash.dew9@gmail.com",
+      "mobile": "7000945004",
+      "password": "dsaf",
+      "id": 6
+    }
+  ],
+  "locations": [
+    {
+      "countries": [
+        {
+          "id": 1,
+          "name": "Country1"
+        },
+        {
+          "id": 2,
+          "name": "Country2"
+        }
+      ],
+      "states": [
+        {
+          "id": 1,
+          "name": "State1",
+          "countryId": 1
+        },
+        {
+          "id": 2,
+          "name": "State2",
+          "countryId": 1
+        },
+        {
+          "id": 3,
+          "name": "State3",
+          "countryId": 2
+        }
+      ],
+      "districts": [
+        {
+          "id": 1,
+          "name": "District1",
+          "stateId": 1
+        },
+        {
+          "id": 2,
+          "name": "District2",
+          "stateId": 1
+        },
+        {
+          "id": 3,
+          "name": "District3",
+          "stateId": 2
+        },
+        {
+          "id": 4,
+          "name": "District4",
+          "stateId": 3
+        }
+      ]
+    }
+  ],
+  "locationTypes": [
+    {
+      "name": "Country",
+      "id": 1
+    },
+    {
+      "name": "State",
+      "id": 2
+    },
+    {
+      "name": "District",
+      "id": 3
+    },
+    {
+      "name": "Block",
+      "id": 4
+    },
+    {
+      "name": "Gram Panchyat",
+      "id": 5
+    },
+    {
+      "name": "Gram",
+      "id": 6
+    }
+  ]
+}

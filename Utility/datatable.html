@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Table with Search and Sorting Example</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+  <div class="form-group">
+    <input type="text" id="searchInput" class="form-control" placeholder="Search...">
+  </div>
+  <table id="dataTable" class="table">
+    <thead>
+      <tr>
+        <th class="sortable" data-sort="id">ID</th>
+        <th class="sortable" data-sort="name">Name</th>
+        <th class="sortable" data-sort="age">Age</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Table body will be populated dynamically -->
+    </tbody>
+  </table>
+</div>
+
+<!-- Bootstrap JavaScript (optional, for features like sorting and pagination) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- Your custom JavaScript -->
+<script>
+$(document).ready(function() {
+  // Sample data (replace with your actual data)
+  var data = [
+    { id: 1, name: 'John Doe', age: 30 },
+    { id: 2, name: 'Jane Smith', age: 25 },
+    { id: 3, name: 'Tom Brown', age: 35 }
+  ];
+
+  // Function to render table rows
+  function renderRows(data) {
+    var tbody = $('#dataTable tbody');
+    tbody.empty(); // Clear existing rows
+    data.forEach(function(rowData) {
+      var row = $('<tr>');
+      Object.values(rowData).forEach(function(value) {
+        row.append($('<td>').text(value));
+      });
+      tbody.append(row);
+    });
+  }
+
+  // Render initial data
+  renderRows(data);
+
+  // Search functionality
+  $('#searchInput').on('keyup', function() {
+    var searchTerm = $(this).val().toLowerCase();
+    var filteredData = data.filter(function(rowData) {
+      return Object.values(rowData).some(function(value) {
+        return value.toString().toLowerCase().includes(searchTerm);
+      });
+    });
+    renderRows(filteredData);
+  });
+
+  // Sorting functionality
+  $('.sortable').on('click', function() {
+    var column = $(this).data('sort');
+    var sortOrder = $(this).hasClass('asc') ? -1 : 1;
+    data.sort(function(a, b) {
+      var aValue = a[column];
+      var bValue = b[column];
+      if (typeof aValue === 'string' && typeof bValue === 'string') {
+        return aValue.localeCompare(bValue) * sortOrder;
+      } else {
+        return (aValue - bValue) * sortOrder;
+      }
+    });
+    renderRows(data);
+    $('.sortable').removeClass('asc').removeClass('desc');
+    $(this).toggleClass('asc', sortOrder === 1).toggleClass('desc', sortOrder === -1);
+  });
+});
+
+</script>
+
+</body>
+</html>

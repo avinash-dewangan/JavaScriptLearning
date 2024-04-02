@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRUD Operations with JSON Server</title>
+</head>
+<body>
+
+<header>
+    <ul class="li">    <a href="./product.html">product</a>
+        </ul>
+    <ul class="li"><a href="./location.html">add location</a></ul>
+    <ul class="li"><a href="./locationType.html">add location type</a></ul>
+    <ul class="li"><a href="./state.html">add state</a></ul>
+</header>
+
+  <h2>Create User</h2>
+  
+  <form id="userForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name"><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email"><br>
+
+    <label for="gender">Gender:</label>
+    <select id="gender" name="gender">
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+    </select><br>
+
+    <label>Interests:</label><br>
+    <input type="checkbox" id="interest1" name="interests" value="sports">
+    <label for="interest1">Sports</label><br>
+    <input type="checkbox" id="interest2" name="interests" value="music">
+    <label for="interest2">Music</label><br>
+    <input type="checkbox" id="interest3" name="interests" value="movies">
+    <label for="interest3">Movies</label><br>
+
+    <label>Role:</label><br>
+    <input type="radio" id="role1" name="role" value="admin">
+    <label for="role1">Admin</label><br>
+    <input type="radio" id="role2" name="role" value="user">
+    <label for="role2">User</label><br>
+
+    <button type="submit">Create User</button>
+  </form>
+
+  <h2>Users List</h2>
+  <ul id="userList"></ul>
+  <h2>Location Type List</h2>
+  <ul id="locationTypeList"></ul>
+  <script>
+    const BASE_URL = 'http://localhost:3000';
+
+    // Function to fetch and display users
+    function fetchUsers() {
+      fetch(`${BASE_URL}/users`)
+      .then(response => response.json())
+      .then(users => {
+        const userList = document.getElementById('userList');
+        userList.innerHTML = '';
+        users.forEach(user => {
+          const listItem = document.createElement('li');
+          listItem.textContent = `${user.name} - ${user.email} - ${user.gender} - ${user.role} - Interests: ${user.interests.join(', ')}`;
+          userList.appendChild(listItem);
+        });
+      })
+      .catch(error => console.error('Error fetching users:', error));
+    }
+
+    // Function to create a new user
+    document.getElementById('userForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const formData = new FormData(event.target);
+      const userData = {};
+      formData.forEach((value, key) => {
+        if (key === 'interests') {
+          if (!userData[key]) {
+            userData[key] = [];
+          }
+          userData[key].push(value);
+        } else {
+          userData[key] = value;
+        }
+      });
+      fetch(`${BASE_URL}/users`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userData)
+      })
+      .then(() => {
+        fetchUsers();
+        event.target.reset();
+      })
+      .catch(error => console.error('Error creating user:', error));
+    });
+
+    // Fetch users on page load
+    fetchUsers();
+  
+
+// Function to fetch location types and populate the list
+fetch(`${BASE_URL}/locationTypes`)
+  .then(response => response.json())
+  .then(locationTypes => {
+    const locationTypeList = document.getElementById('locationTypeList');
+    locationTypes.forEach(locationType => {
+      const listItem = document.createElement('li');
+      listItem.textContent = locationType.name;
+      locationTypeList.appendChild(listItem);
+    });
+  })
+  .catch(error => console.error('Error fetching location types:', error));
+  </script>
+
+</body>
+</html>

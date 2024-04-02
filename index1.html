@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linear Gradient Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input[type="color"] {
+      width: 100px;
+      height: 30px;
+    }
+
+    #preview {
+      width: 100%;
+      height: 200px;
+      margin: 20px 0;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Linear Gradient Generator</h2>
+    <label for="startColor">Start Color:</label>
+    <input type="color" id="startColor" value="#ff0000">
+    <br>
+    <label for="endColor">End Color:</label>
+    <input type="color" id="endColor" value="#0000ff">
+    <br>
+    <label for="direction">Direction:</label>
+    <select id="direction">
+      <option value="to right">Left to Right</option>
+      <option value="to left">Right to Left</option>
+      <option value="to top">Top to Bottom</option>
+      <option value="to bottom">Bottom to Top</option>
+    </select>
+    <br>
+    <button onclick="generateGradient()">Generate Gradient</button>
+    <br>
+    <div id="preview"></div>
+    <button onclick="copyToClipboard()">Copy CSS Code</button>
+  </div>
+
+  <script>
+    function generateGradient() {
+      const startColor = document.getElementById('startColor').value;
+      const endColor = document.getElementById('endColor').value;
+      const direction = document.getElementById('direction').value;
+      const preview = document.getElementById('preview');
+
+      preview.style.background = `linear-gradient(${direction}, ${startColor}, ${endColor})`;
+    }
+
+    function copyToClipboard() {
+      const preview = document.getElementById('preview');
+      const cssCode = window.getComputedStyle(preview).backgroundImage;
+
+      const textarea = document.createElement('textarea');
+      textarea.value = cssCode;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+
+      alert('Gradient CSS code copied to clipboard!');
+    }
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON Formatter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    textarea {
+      width: 100%;
+      height: 200px;
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      resize: vertical;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    pre {
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      background-color: #f8f9fa;
+      padding: 10px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>JSON Formatter</h2>
+    <textarea id="jsonInput" placeholder="Enter JSON data here..."></textarea>
+    <button onclick="formatJSON()">Format JSON</button>
+    <pre id="formattedJson"></pre>
+  </div>
+
+  <script>
+    function formatJSON() {
+      const jsonInput = document.getElementById('jsonInput').value.trim();
+      let formattedJson = '';
+
+      try {
+        const parsedJson = JSON.parse(jsonInput);
+        formattedJson = JSON.stringify(parsedJson, null, 2);
+      } catch (error) {
+        formattedJson = 'Invalid JSON data';
+      }
+
+      document.getElementById('formattedJson').textContent = formattedJson;
+    }
+  </script>
+
+<div class="container">
+  <h2>Age Calculator</h2>
+  <label for="birthdate">Enter Your Birthdate:</label>
+  <input type="date" id="birthdate">
+  <button onclick="calculateAge()">Calculate Age</button>
+  <p id="ageResult"></p>
+</div>
+<style>
+  
+
+  .container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  label {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  p {
+    margin-top: 20px;
+  }
+</style>
+<script>
+  function calculateAge() {
+    const birthdate = new Date(document.getElementById('birthdate').value);
+    const currentDate = new Date();
+    const ageInMilliseconds = currentDate - birthdate;
+    const ageInYears = Math.floor(ageInMilliseconds / (1000 * 60 * 60 * 24 * 365));
+
+    document.getElementById('ageResult').textContent = `Your age is ${ageInYears} years.`;
+  }
+</script>
+</body>
+</html>
+
+
+
+ 

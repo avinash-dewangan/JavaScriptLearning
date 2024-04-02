@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memoization Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Memoization Example</h1>
+    <p>Calculate Fibonacci numbers:</p>
+    <input type="number" id="fibInput" placeholder="Enter a number">
+    <button onclick="calculateFibonacci()">Calculate</button>
+    <p id="result"></p>
+
+    <script>
+        // Memoization function to cache results of expensive function calls
+        function memoize(func) {
+            const cache = {};
+
+            return function(...args) {
+                const key = JSON.stringify(args);
+                
+                if (!cache[key]) {
+                    cache[key] = func.apply(this, args);
+                }
+
+                return cache[key];
+            };
+        }
+
+        // Recursive function to calculate Fibonacci number
+        function fibonacci(n) {
+            if (n <= 1) {
+                return n;
+            } else {
+                return fibonacci(n - 1) + fibonacci(n - 2);
+            }
+        }
+
+        // Memoize the Fibonacci function
+        const memoizedFibonacci = memoize(fibonacci);
+
+        function calculateFibonacci() {
+            const input = document.getElementById('fibInput').value;
+            const result = memoizedFibonacci(parseInt(input));
+            document.getElementById('result').textContent = `Fibonacci(${input}) = ${result}`;
+        }
+    </script>
+</body>
+</html>
