@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ride Sharing System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="ride-container">
+        <h1>Ride Sharing System</h1>
+        
+        <div class="registration">
+            <h2>Register</h2>
+            <select id="userType">
+                <option value="rider">Rider</option>
+                <option value="driver">Driver</option>
+            </select>
+            <input type="text" id="name" placeholder="Name" />
+            <input type="text" id="vehicle" placeholder="Vehicle (for drivers only)" />
+            <button id="register">Register</button>
+        </div>
+
+        <div class="ride-request">
+            <h2>Request Ride</h2>
+            <input type="text" id="pickupLocation" placeholder="Pickup Location" />
+            <input type="text" id="dropoffLocation" placeholder="Dropoff Location" />
+            <button id="requestRide">Request Ride</button>
+        </div>
+
+        <div class="view-drivers">
+            <h2>Available Drivers</h2>
+            <button id="viewDrivers">View Drivers</button>
+        </div>
+
+        <div class="manage-rides">
+            <h2>Manage Rides</h2>
+            <button id="viewActiveRides">View Active Rides</button>
+        </div>
+
+        <div class="output-area">
+            <p id="output"></p>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

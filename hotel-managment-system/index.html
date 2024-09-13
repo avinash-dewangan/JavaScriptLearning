@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="hotel-container">
+        <h1>Hotel Management System</h1>
+        
+        <div class="room-selection">
+            <h2>Select Room</h2>
+            <select id="roomType">
+                <option value="single">Single Room</option>
+                <option value="double">Double Room</option>
+                <option value="suite">Suite</option>
+            </select>
+            <input type="date" id="checkInDate" placeholder="Check-in Date" />
+            <input type="date" id="checkOutDate" placeholder="Check-out Date" />
+            <button id="checkAvailability">Check Availability</button>
+            <button id="bookRoom" disabled>Book Room</button>
+        </div>
+
+        <div class="view-bookings">
+            <h2>View Bookings</h2>
+            <button id="viewBookings">View Bookings</button>
+        </div>
+
+        <div class="output-area">
+            <p id="output"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

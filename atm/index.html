@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATM System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="atm-container">
+        <h1>ATM System</h1>
+        
+        <div class="atm-operations">
+            <button id="checkBalance">Check Balance</button>
+            <button id="deposit">Deposit</button>
+            <button id="withdraw">Withdraw</button>
+            <button id="transactionHistory">Transaction History</button>
+        </div>
+
+        <div class="input-area">
+            <label for="amount">Enter Amount:</label>
+            <input type="number" id="amount" placeholder="Amount" />
+        </div>
+
+        <div class="output-area">
+            <p id="output"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

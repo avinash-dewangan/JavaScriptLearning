@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parking Lot System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Parking Lot System</h1>
+        <div class="form-container">
+            <label for="licensePlate">License Plate:</label>
+            <input type="text" id="licensePlate" placeholder="Enter license plate">
+
+            <label for="vehicleSize">Vehicle Size:</label>
+            <select id="vehicleSize">
+                <option value="small">Small</option>
+                <option value="medium">Medium</option>
+                <option value="large">Large</option>
+            </select>
+
+            <button id="parkBtn">Park Vehicle</button>
+            <button id="removeBtn">Remove Vehicle</button>
+        </div>
+
+        <h2>Parking Lot</h2>
+        <div id="parkingLot" class="parking-lot"></div>
+
+        <div id="log"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

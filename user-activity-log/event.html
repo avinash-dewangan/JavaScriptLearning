@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Logger</title>
+</head>
+<body>
+    <h1>Event Logger</h1>
+
+    <button id="clickButton">Click Me</button>
+    <input type="text" id="textInput" placeholder="Type something">
+    <form id="sampleForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+        <button type="submit">Submit</button>
+    </form>
+
+    <a href="#">Click me too</a>
+    <select id="selectMenu">
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+    </select>
+
+    <script>
+        // Function to log event details
+function logEvent(event) {
+    console.info(`Date: ${new Date().toISOString()} Event type: ${event.type} Event target: ${event.target.tagName} Event Text: ${event.target.textContent}`);
+    // console.log(`Event type: ${event.type}`);
+    // console.log(`Event target: ${event.target.tagName}`);
+    // console.log(`Event timestamp: ${event.timeStamp}`);
+}
+
+// List of events to listen to
+const events = [
+    'click',      // Click events
+    'dblclick',   // Double-click events
+    'mousedown',  // Mouse button pressed
+    'mouseup',    // Mouse button released
+    'mouseover',  // Mouse pointer moved over element
+    'mouseout',   // Mouse pointer moved out of element
+    'mousemove',  // Mouse pointer moved within element
+    'keydown',    // Key pressed down
+    'keyup',      // Key released
+    'keypress',   // Key pressed (deprecated, use keydown/keyup)
+    'input',      // Input value changed
+    'change',     // Input element value changed
+    'submit',     // Form submission
+    'focus',      // Element gains focus
+    'blur',       // Element loses focus
+    'contextmenu', // Right-click context menu
+    'wheel',      // Mouse wheel scroll
+    'resize',     // Window or element resized
+    'scroll',     // Element or window scrolled
+    'drag',       // Element dragged
+    'drop',       // Element dropped
+    'load',       // Page or resource loaded
+    'unload',     // Page or resource unloaded
+    'error',      // Error occurred
+    'keydown',    // Key pressed down
+    'touchstart', // Touch start
+    'touchmove',  // Touch move
+    'touchend',   // Touch end
+    'touchcancel' // Touch canceled
+];
+
+// Attach event listeners for each event type
+events.forEach(eventType => {
+    document.addEventListener(eventType, logEvent, true);
+});
+
+    </script>
+</body>
+</html>
